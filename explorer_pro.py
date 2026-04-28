@@ -1,16 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-PROJECT EXPLORER PRO - v3.0 (Enhanced)
-======================================
-Advanced Directory Scanner & Task Manager with Hierarchical Navigation,
-Duplicate Detection, Real-time Search, and Performance Optimizations.
-
-FIXES APPLIED:
-✓ Fixed IndexError on empty recent_paths list initialization
-✓ Added robust fallback for config defaults
-✓ Optimized queue processing and UI thread safety
-"""
 import os
 import sys
 import threading
@@ -494,12 +481,12 @@ class ProjectExplorerPro:
         self._process_queues()
 
     def _setup_dark_theme(self):
-        self.bg_primary = '#1E1E1E'
-        self.bg_secondary = '#252526'
-        self.bg_tertiary = '#2D2D30'
+        self.bg_primary = "#646464"
+        self.bg_secondary = "#8D8DC7"
+        self.bg_tertiary = "#3C3C91"
         self.fg_primary = '#E0E0E0'
-        self.fg_secondary = '#A0A0A0'
-        self.accent = '#007ACC'
+        self.fg_secondary = "#C4BEBE"
+        self.accent = "#0E8CE0"
         self.root.configure(bg=self.bg_primary)
         style = ttk.Style()
         style.theme_use('clam')

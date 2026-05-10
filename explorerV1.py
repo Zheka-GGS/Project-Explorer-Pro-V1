@@ -29,7 +29,7 @@ class ConfigManager:
     """Handles loading/saving user preferences with advanced UI settings."""
     CONFIG_PATH = os.path.join(os.path.expanduser("~"), ".explorer_pro_config.json")
     DEFAULTS = {
-        "theme": "dark",
+        "theme": "Modern Dark",
         "scan_mode": "quick",
         "skip_system_dirs": False,
         "task_refresh_interval": 2,
@@ -39,12 +39,6 @@ class ConfigManager:
         "search_include_hidden": True,
         "tree_depth_limit": 5,
         "font_size": 10,
-        "custom_bg_primary": "#DDF8FF",
-        "custom_bg_secondary": "#F5F5FF",
-        "custom_bg_tertiary": "#FFFFFF",
-        "custom_fg_primary": "#00BFFF",
-        "custom_fg_secondary": "#A3D3FB",
-        "custom_accent": "#529FD1",
         "window_geometry": "1450x850"
     }
 
@@ -86,19 +80,116 @@ class ConfigManager:
         self.save()
 
 # ============================================================================
+# THEME SYSTEM
+# ============================================================================
+THEMES = {
+    "Modern Dark": {
+        "bg_primary": "#0A0A0F",
+        "bg_secondary": "#16161F",
+        "bg_tertiary": "#1F1F2E",
+        "fg_primary": "#67E8F9",
+        "fg_secondary": "#A5F3FC",
+        "accent": "#22D3EE",
+        "file_colors": {
+            '.pdf': '#3B82F6', '.docx': '#3B82F6', '.doc': '#3B82F6', '.txt': '#60A5FA',
+            '.xlsx': '#10B981', '.xls': '#10B981', '.csv': '#10B981', '.md': '#F97316',
+            '.png': '#EC4899', '.jpg': '#EC4899', '.jpeg': '#EC4899', '.mp3': '#F59E0B',
+            '.mp4': '#8B5CF6', '.mkv': '#8B5CF6', '.py': '#10B981', '.js': '#F59E0B',
+            '.html': '#EF4444', '.css': '#3B82F6', '.zip': '#FBBF24', '.exe': '#EF4444',
+            '.sys': '#6B7280', '.dll': '#6B7280', '.log': '#ECA5A5', '.db': '#DC2626',
+            "folder": "#F59E0B", "folder_system": "#7F1D1D", "default": "#F472B6"
+        }
+    },
+    "Deep Indigo": {
+        "bg_primary": "#0F0F23",
+        "bg_secondary": "#1A1A3E",
+        "bg_tertiary": "#2D2D5F",
+        "fg_primary": "#A8D8FF",
+        "fg_secondary": "#C7E9FF",
+        "accent": "#7C3AED",
+        "file_colors": {
+            '.pdf': '#4F46E5', '.docx': '#4F46E5', '.doc': '#4F46E5', '.txt': '#818CF8',
+            '.xlsx': '#06B6D4', '.xls': '#06B6D4', '.csv': '#06B6D4', '.md': '#FB923C',
+            '.png': '#EC4899', '.jpg': '#EC4899', '.jpeg': '#EC4899', '.mp3': '#FBBF24',
+            '.mp4': '#A78BFA', '.mkv': '#A78BFA', '.py': '#10B981', '.js': '#F97316',
+            '.html': '#F87171', '.css': '#4F46E5', '.zip': '#FCD34D', '.exe': '#EF4444',
+            '.sys': '#4B5563', '.dll': '#6B7280', '.log': '#FECACA', '.db': '#DC2626',
+            "folder": "#A78BFA", "folder_system": "#4C0519", "default": "#C084FC"
+        }
+    },
+    "Cyber Neon": {
+        "bg_primary": "#000000",
+        "bg_secondary": "#0D1117",
+        "bg_tertiary": "#161B22",
+        "fg_primary": "#00FF88",
+        "fg_secondary": "#00FFCC",
+        "accent": "#00FF00",
+        "file_colors": {
+            '.pdf': '#00FF00', '.docx': '#00FF00', '.doc': '#00FF00', '.txt': '#00FFCC',
+            '.xlsx': '#FF00FF', '.xls': '#FF00FF', '.csv': '#FF00FF', '.md': '#FFFF00',
+            '.png': '#FF0080', '.jpg': '#FF0080', '.jpeg': '#FF0080', '.mp3': '#00FFFF',
+            '.mp4': '#00FF88', '.mkv': '#00FF88', '.py': '#00FF00', '.js': '#FFFF00',
+            '.html': '#FF0000', '.css': '#00FF00', '.zip': '#FFFF00', '.exe': '#FF0000',
+            '.sys': '#00FFCC', '.dll': '#00FFCC', '.log': '#FF00FF', '.db': '#FF0000',
+            "folder": "#00FF88", "folder_system": "#660000", "default": "#FF00FF"
+        }
+    },
+    "Soft Warm": {
+        "bg_primary": "#FBF8F3",
+        "bg_secondary": "#F5F1E8",
+        "bg_tertiary": "#EFE9E0",
+        "fg_primary": "#5A4A42",
+        "fg_secondary": "#7B6B63",
+        "accent": "#D4876C",
+        "file_colors": {
+            '.pdf': '#8B6F47', '.docx': '#8B6F47', '.doc': '#8B6F47', '.txt': '#A0826D',
+            '.xlsx': '#7FB069', '.xls': '#7FB069', '.csv': '#7FB069', '.md': '#D4876C',
+            '.png': '#D4876C', '.jpg': '#D4876C', '.jpeg': '#D4876C', '.mp3': '#C89D5A',
+            '.mp4': '#B8956A', '.mkv': '#B8956A', '.py': '#7FB069', '.js': '#D4876C',
+            '.html': '#C85A54', '.css': '#8B6F47', '.zip': '#D4A574', '.exe': '#C85A54',
+            '.sys': '#9B9B9B', '.dll': '#A0A0A0', '.log': '#E6B5A8', '.db': '#A94432',
+            "folder": "#C89D5A", "folder_system": "#5A3A2A", "default": "#D4A574"
+        }
+    },
+    "Ocean Blue": {
+        "bg_primary": "#0D1B2A",
+        "bg_secondary": "#1B3A52",
+        "bg_tertiary": "#265C84",
+        "fg_primary": "#90E0EF",
+        "fg_secondary": "#CAF0F8",
+        "accent": "#00B4D8",
+        "file_colors": {
+            '.pdf': '#0077B6', '.docx': '#0077B6', '.doc': '#0077B6', '.txt': '#0096C7',
+            '.xlsx': '#00D9FF', '.xls': '#00D9FF', '.csv': '#00D9FF', '.md': '#03045E',
+            '.png': '#FF006E', '.jpg': '#FF006E', '.jpeg': '#FF006E', '.mp3': '#FB5607',
+            '.mp4': '#00B4D8', '.mkv': '#00B4D8', '.py': '#00D9FF', '.js': '#FB5607',
+            '.html': '#FF006E', '.css': '#0077B6', '.zip': '#FFB703', '.exe': '#D62828',
+            '.sys': '#4A90E2', '.dll': '#4A90E2', '.log': '#90E0EF', '.db': '#D62828',
+            "folder": "#00B4D8", "folder_system": "#03045E", "default": "#90E0EF"
+        }
+    },
+    "White": {
+        "bg_primary": "#FFFFFF",
+        "bg_secondary": "#F9F9F9",
+        "bg_tertiary": "#F0F0F0",
+        "fg_primary": "#1F2937",
+        "fg_secondary": "#4B5563",
+        "accent": "#3B82F6",
+        "file_colors": {
+            '.pdf': '#1E40AF', '.docx': '#1E40AF', '.doc': '#1E40AF', '.txt': '#1E40AF',
+            '.xlsx': '#059669', '.xls': '#059669', '.csv': '#059669', '.md': '#D97706',
+            '.png': '#DC2626', '.jpg': '#DC2626', '.jpeg': '#DC2626', '.mp3': '#EA580C',
+            '.mp4': '#7C3AED', '.mkv': '#7C3AED', '.py': '#059669', '.js': '#D97706',
+            '.html': '#DC2626', '.css': '#1E40AF', '.zip': '#D97706', '.exe': '#DC2626',
+            '.sys': '#6B7280', '.dll': '#6B7280', '.log': '#991B1B', '.db': '#991B1B',
+            "folder": "#D97706", "folder_system": "#7F1D1D", "default": "#9CA3AF"
+        }
+    }
+}
+
+# ============================================================================
 # CONSTANTS & DATA CLASSES
 # ============================================================================
-FILE_TYPE_COLORS = {
-    '.pdf': '#1E90FF', '.docx': '#1E90FF', '.doc': '#1E90FF', '.txt': '#87CEEB',
-    '.xlsx': '#1E90FF', '.xls': '#1E90FF', '.csv': '#1E90FF', '.md': '#FFA500',
-    '.png': '#FF69B4', '.jpg': '#FF69B4', '.jpeg': '#FF69B4', '.mp3': '#FF8C00',
-    '.mp4': '#9370DB', '.mkv': '#9370DB', '.py': '#32CD32', '.js': '#32CD32',
-    '.html': '#32CD32', '.css': '#32CD32', '.zip': '#FFD700', '.exe': '#FF4500',
-    '.sys': '#808080', '.dll': "#445BA0", '.log': "#FA9797", '.db': '#DC143C'
-}
-DEFAULT_COLOR = "#FFD0D0"
-FOLDER_COLOR = "#E1E141"
-SYSTEM_FOLDER_COLOR = "#690000"
 
 SAFE_PATTERNS = {
     'extensions': {'.tmp', '.bak', '.temp', '.cache', '.crdownload', '.part', '.downloading', '.~tmp'},
@@ -173,6 +264,17 @@ class FileClassifier:
         self.is_windows = platform.system() == "Windows"
         self.running_process_paths = self._get_running_process_paths()
         self.cache = LRU_Cache(maxsize=8000)
+        self.current_theme = THEMES.get(self.config.get("theme", "Modern Dark"), THEMES["Modern Dark"])
+
+    def _get_color_for_file(self, ext: str, is_dir: bool, is_critical: bool) -> str:
+        """Get file color based on current theme"""
+        theme_colors = self.current_theme.get("file_colors", {})
+        
+        if is_dir:
+            return theme_colors.get("folder_system") if is_critical else theme_colors.get("folder", "#FFD700")
+        
+        ext_lower = ext.lower()
+        return theme_colors.get(ext_lower, theme_colors.get("default", "#A0A0A0"))
 
     def _get_running_process_paths(self) -> Set[str]:
         locked_files = set()
@@ -197,7 +299,9 @@ class FileClassifier:
             size = stat_info.st_size if not is_dir else 0
             mtime = stat_info.st_mtime
         except (OSError, PermissionError):
-            fi = FileInfo(path, os.path.basename(path), '', False, 0, SafetyClassification.UNKNOWN, DEFAULT_COLOR, parent_path=os.path.dirname(path))
+            theme_colors = self.current_theme.get("file_colors", {})
+            color = theme_colors.get("default", "#A0A0A0")
+            fi = FileInfo(path, os.path.basename(path), '', False, 0, SafetyClassification.UNKNOWN, color, parent_path=os.path.dirname(path))
             self.cache.set(path, fi)
             return fi
 
@@ -205,16 +309,14 @@ class FileClassifier:
         ext = os.path.splitext(filename)[1].lower()
         path_lower = path.lower()
 
-        if is_dir:
-            color = SYSTEM_FOLDER_COLOR if filename in CRITICAL_PATTERNS.get('directories', set()) else FOLDER_COLOR
-            file_type_name = 'Folder'
-        else:
-            color = FILE_TYPE_COLORS.get(ext, DEFAULT_COLOR)
-            file_type_name = self._get_file_type_name(ext)
-
         safety = SafetyClassification.UNKNOWN
         if scan_mode == "full":
             safety = self._classify_safety(path, path_lower, filename, ext)
+
+        is_critical = (safety == SafetyClassification.CRITICAL or 
+                       filename in CRITICAL_PATTERNS.get('directories', set()))
+        color = self._get_color_for_file(ext, is_dir, is_critical)
+        file_type_name = 'Folder' if is_dir else self._get_file_type_name(ext)
 
         fi = FileInfo(path=path, filename=filename, extension=ext, is_dir=is_dir, size=size,
                       safety_classification=safety, color=color, modified_time=mtime,
@@ -569,12 +671,15 @@ class ProjectExplorerPro:
 
     def _setup_theme(self):
         c = self.config
-        self.bg_primary = c.get("custom_bg_primary", "#DDF8FF")
-        self.bg_secondary = c.get("custom_bg_secondary", "#F5F5FF")
-        self.bg_tertiary = c.get("custom_bg_tertiary", "#FFFFFF")
-        self.fg_primary = c.get("custom_fg_primary", "#00BFFF")
-        self.fg_secondary = c.get("custom_fg_secondary", "#A3D3FB")
-        self.accent = c.get("custom_accent", "#529FD1")
+        theme_name = c.get("theme", "Modern Dark")
+        self.current_theme = THEMES.get(theme_name, THEMES["Modern Dark"])
+        
+        self.bg_primary = self.current_theme["bg_primary"]
+        self.bg_secondary = self.current_theme["bg_secondary"]
+        self.bg_tertiary = self.current_theme["bg_tertiary"]
+        self.fg_primary = self.current_theme["fg_primary"]
+        self.fg_secondary = self.current_theme["fg_secondary"]
+        self.accent = self.current_theme["accent"]
         
         self.font_size = c.get("font_size", 10)
         self.default_font = ("Segoe UI", self.font_size)
@@ -941,47 +1046,64 @@ class ProjectExplorerPro:
     def _open_settings(self):
         top = tk.Toplevel(self.root)
         top.title("⚙️ Settings & Appearance")
-        top.geometry("500x400")
+        top.geometry("500x500")
         top.resizable(False, False)
         
         frame = ttk.Frame(top, padding=20)
         frame.pack(fill=tk.BOTH, expand=True)
         
-        ttk.Label(frame, text="Font Size:", font=self.default_font).pack(anchor=tk.W, pady=5)
-        font_spin = ttk.Spinbox(frame, from_=8, to=16, width=5, command=lambda: self._update_font(font_spin.get()))
+        # Theme Selection
+        ttk.Label(frame, text="Theme:", font=('Segoe UI', 11, 'bold')).pack(anchor=tk.W, pady=(10, 5))
+        theme_var = tk.StringVar(value=self.config.get("theme", "Modern Dark"))
+        theme_combo = ttk.Combobox(frame, textvariable=theme_var, values=list(THEMES.keys()), 
+                                    width=40, state="readonly", font=self.default_font)
+        theme_combo.pack(anchor=tk.W, pady=5, fill=tk.X)
+        
+        # Theme Preview
+        preview_frame = ttk.LabelFrame(frame, text="Theme Preview", padding=10)
+        preview_frame.pack(fill=tk.X, pady=10)
+        
+        def update_preview(*args):
+            theme = THEMES.get(theme_var.get(), THEMES["Modern Dark"])
+            preview_label.config(
+                text="Sample Text",
+                foreground=theme["fg_primary"],
+                background=theme["bg_secondary"]
+            )
+            preview_frame.configure(style='Secondary.TFrame')
+        
+        preview_label = ttk.Label(preview_frame, text="Sample Text", font=('Segoe UI', 12, 'bold'),
+                                   background=self.bg_secondary, foreground=self.fg_primary)
+        preview_label.pack(pady=15)
+        theme_var.trace_add('write', update_preview)
+        
+        # Font Size
+        ttk.Label(frame, text="Font Size:", font=self.default_font).pack(anchor=tk.W, pady=(15, 5))
+        font_spin = ttk.Spinbox(frame, from_=8, to=16, width=5, font=self.default_font)
         font_spin.set(self.font_size)
         font_spin.pack(anchor=tk.W, pady=5)
         
-        colors = ['custom_bg_primary', 'custom_bg_secondary', 'custom_fg_primary', 'custom_accent']
-        for c in colors:
-            ttk.Label(frame, text=f"{c}:", font=self.default_font).pack(anchor=tk.W, pady=5)
-            btn = ttk.Button(frame, text=f"Current: {self.config.get(c)}", command=lambda cl=c: self._pick_color(cl, btn))
-            btn.pack(anchor=tk.W, pady=2)
+        # Apply Button
+        def apply_settings():
+            theme_name = theme_var.get()
+            if theme_name in THEMES:
+                self.config.set("theme", theme_name)
+                self.classifier.current_theme = THEMES[theme_name]
+                
+            try:
+                font_size = int(font_spin.get())
+                if 8 <= font_size <= 16:
+                    self.config.set("font_size", font_size)
+                    self.font_size = font_size
+            except ValueError:
+                pass
             
-        ttk.Button(frame, text="💾 Save & Apply", command=top.destroy).pack(pady=20)
-
-    def _update_font(self, size):
-        try:
-            size = int(size)
-            if not (8 <= size <= 16):
-                messagebox.showwarning("Warning", "Font size must be between 8 and 16")
-                return
-        except ValueError:
-            return
-        self.font_size = size
-        self.config.set("font_size", size)
-        self._setup_theme()
-        self._build_ui()
-
-    def _pick_color(self, key, btn):
-        result = colorchooser.askcolor(title=f"Select {key}")
-        color = result[1] if result and result[1] else None
-        if color and isinstance(color, str) and color.startswith('#'):
-            self.config.set(key, color)
-            btn.config(text=f"Current: {color}")
             self._setup_theme()
-        elif color:
-            messagebox.showerror("Error", "Invalid color format")
+            self.classifier.cache.clear()
+            self._start_scan()
+            top.destroy()
+        
+        ttk.Button(frame, text="💾 Apply & Close", command=apply_settings).pack(pady=20)
 
     def _show_disclaimer(self):
         msg = "⚠️ SAFETY DISCLAIMER\nThis tool provides deep system access.\nCRITICAL files/processes are protected.\nUse at your own risk. Backup important data.\nProceed?"

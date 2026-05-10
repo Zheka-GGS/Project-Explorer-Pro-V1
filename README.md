@@ -124,6 +124,9 @@ python explorerV1.py
 -  Theme Colors: Primary, Secondary, Tertiary, Accent
 -  Font Size: Adjustable (8-16pt)
 -  Persistent Settings: Auto-saved in user home directory
+
+There is also an exe file with which you don't need to install the program and you can just run it right away.
+
 License
 MIT License. Free for personal, educational, and commercial use. Refer to the included LICENSE file for full terms.
 
@@ -250,6 +253,9 @@ python explorerV1.py
 -  Цвета: Основной, Вторичный, Третичный, Акцент
 -  Размер Шрифта: Настраивается (8-16пт)
 -  Сохранение: Автосохранение в домашней директории
+
+Также есть exe файл, с помощью которого вам не нужно устанавливать приложение и вы можете просто запустить его сразу.
+
 
 License
 MIT License. Свободное использование в личных, образовательных и коммерческих целях. Полные условия см. в файле LICENSE.
